@@ -20,33 +20,33 @@ Once the player is done the dealer keeps taking cards until he has at least 15 p
 At the end display the winner
 
 #### Creating the base classes
-[ ] Create a class called `Player` in the file `Player.php`.
-[ ] Add 2 private properties:
-    - [ ] `cards` (array)
-    - [ ] `lost` (bool, default = false)
-[ ] Add a couple of empty public methods to this class: 
-	- [ ] `hit`
-	- [ ] `surrender`
-	- [ ] `getScore`
-	- [ ] `hasLost`
-[ ] Create a class called `Blackjack` in the file `Blackjack.php`
-[ ] Add 3 private properties 
-    [ ] `player` (Player)
-    [ ] `dealer` (Player for now)
-    [ ] `deck`  (Deck)
-[ ] Add the following public methods:
-    -[ ] `getPlayer` (returns the `player` object)
-    -[ ] `getDealer` (returns the `dealer` object)
-    -[ ] `getDeck` (returns the `deck` object)
-[ ] In the [constructor](https://www.php.net/manual/en/language.oop5.decon.php) do the following:
-    -[ ] Instantiate the Player class twice, insert it into the `player` property and a `dealer` property.
-    -[ ] Create a new [`deck` object](code/Deck.php) (code has already been written for you!).
-    -[ ] Shuffle the cards with `shuffle` method on `deck`.
-[ ] In the [constructor](https://www.php.net/manual/en/language.oop5.decon.php) of the `Player` class;
-    -[ ] Make it expect the `Deck` object as a parameter.
-    -[ ] Pass this `Deck` from the `Blackjack` constructor.
-    -[ ] Now draw 2 cards for the player. You have to use an existing method for this from the Deck class.
-[ ] Go[ ] back to the `Player` class and add the following logic in your empty methods:
+[x] Create a class called `Player` in the file `Player.php`.
+[x]Add 2 private properties:
+    - `cards` (array)
+    - `lost` (bool, default = false)
+[x] Add a couple of empty public methods to this class: 
+	- `hit`
+	- `surrender`
+	- `getScore`
+	- `hasLost`
+[x] Create a class called `Blackjack` in the file `Blackjack.php`
+[x] Add 3 private properties 
+    - `player` (Player)
+    - `dealer` (Player for now)
+    - `deck`  (Deck)
+[x] Add the following public methods:
+    - `getPlayer` (returns the `player` object)
+    - `getDealer` (returns the `dealer` object)
+    - `getDeck` (returns the `deck` object)
+[x] In the [constructor](https://www.php.net/manual/en/language.oop5.decon.php) do the following:
+    - Instantiate the Player class twice, insert it into the `player` property and a `dealer` property.
+    - Create a new [`deck` object](code/Deck.php) (code has already been written for you!).
+    - Shuffle the cards with `shuffle` method on `deck`.
+[x] In the [constructor](https://www.php.net/manual/en/language.oop5.decon.php) of the `Player` class;
+    - Make it expect the `Deck` object as a parameter.
+    - Pass this `Deck` from the `Blackjack` constructor.
+    - Now draw 2 cards for the player. You have to use an existing method for this from the Deck class.
+[x] Go back to the `Player` class and add the following logic in your empty methods:
     -[ ] `getScore` loops over all the cards and return the total value of that player.
     -[ ] `hasLost` will return the bool of the lost property.
     -[ ] `hit` should add a card to the player. If this brings him above 21, set `lost` property to `true`. To count his score use the method `getScore` you wrote earlier. This method should expect the `$deck` variable as an argument from outside, to draw the card.
