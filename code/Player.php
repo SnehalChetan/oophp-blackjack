@@ -10,13 +10,14 @@ declare(strict_types=1);
  */
 
 class Player{
-    private array $cards = [];
-    private bool $lost = false;
+    protected array $cards = [];
+    protected bool $lost = false;
+    protected int $score = 0;
 
     public function __construct(Deck $deck)
     {
-        $this->cards[] = $deck->drawCard();
-        $this->cards[] = $deck->drawCard();
+        array_push($this->cards,$deck->drawCard());
+        array_push($this->cards,$deck->drawCard());
        
     }
     /**
@@ -24,9 +25,12 @@ class Player{
      * `hit`, `surrender`, `getScore`, `hasLost`
      */
 
-    public function hit():void
+    public function hit(Deck $deck):void
     {
-        $this->cards = $this->deck->drawCard();
+        array_push($this->cards, $deck->drawCard());
+        if ($this->getScore() > 21){
+            $this->lost = true;
+        }
     }
 
     public function surrender():bool
@@ -43,13 +47,11 @@ class Player{
  */
     public function getScore():int
     {
-        $score = 0;
-        forEach($this->cards as $cardValue){
-             
-             $score = $score + $cardValue->getValue();
+        $this->score = 0;
+        foreach ($this->cards as $key => $card){
+            $this->score += $card->getValue();
         }
-
-        return $score;
+        return $this->score;
     
     }
     
@@ -58,8 +60,21 @@ class Player{
         return $this->lost;
     }
 
+    public function getCards(): array
+    {
+        return $this->cards;
+    }
 
 }
 
+class Dealer extends Player
+{
+    public function hit(Deck $deck):void
+    {
+        while ($this->getScore()<15){
+            parent::hit($deck);
+        }
+    }
+}
 ?>
 

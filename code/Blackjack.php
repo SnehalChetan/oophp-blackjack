@@ -19,11 +19,12 @@ class Blackjack{
     private Player $dealer ;
     private Deck $deck;
 
-    Public function __construct(Player $player,Player $dealer, Deck $deck)
+    Public function __construct()
     {
-        $this->player = $player;
-        $this->dealer = $dealer;
-        $this->deck = $deck;
+        $this->deck = new Deck();
+        $this->deck->shuffle();
+        $this->player = new Player($this->deck);
+        $this->dealer = new Dealer($this->deck);
     }
 
     /*
@@ -37,7 +38,7 @@ class Blackjack{
         return $this->player;
     }
 
-    public function getDealer() : Player{
+    public function getDealer() : Dealer{
 
         return $this->dealer;
     }
@@ -48,15 +49,4 @@ class Blackjack{
     }
 }
 
-$deck = new Deck();
-$player = new Player($deck);
-$dealer = new Player($deck);
-
-$deck->shuffle();
-$blackjack = new Blackjack($player,$dealer,$deck);
-// echo "<pre/>";
-// var_dump($blackjack);
-// exit;
-
-$_SESSION["game"] = $blackjack;
 ?>
