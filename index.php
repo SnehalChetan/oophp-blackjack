@@ -13,7 +13,7 @@ declare(strict_types=1);
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
-<body>
+<body style="line-height:1;">
     <div class="container">
         <header class="border-bottom mb-2">
             <h1 class="text-center mt-2">BlackJack in PHP</h1>
@@ -86,7 +86,31 @@ declare(strict_types=1);
     </div>
     </div>
     <div class="col">
-      Score Board
+      <h5>Score Board</h5>
+        <div class="row">
+            <div class="col">
+            Deler's Score
+            </div>
+            <div class="col">
+            
+            </div>
+            <div class="col">
+            Player's Score
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+            <?php echo $_SESSION['blackJack']->getDealer()->getScore(); ?>
+            </div>
+            <div class="col">
+            
+            </div>
+            <div class="col">
+            <?php
+                echo $_SESSION['blackJack']->getPlayer()->getScore();
+                ?>
+            </div>
+        </div>
     </div>
     <div class="col">
     <?php
@@ -99,7 +123,36 @@ declare(strict_types=1);
   </div>
   
 
-</div>
+
+<div class="message">
+       
+       <?php
+   
+           if(isset($_POST['hit'])){
+               $player->hit($deck);
+               if($player->hasLost() == true){
+                   echo '<div class="alert alert-danger text-center">';
+                   echo 'The player loses the game';
+                   echo '</div>';
+               }
+           }
+           if(isset($_POST['stand'])){
+               $dealer->hit($deck);
+               if($dealer->hasLost() == true){
+                   echo '<div class="alert alert-success text-center">';
+                   echo "The player wins the game";
+                   echo '</div>';
+               }
+           }
+           if(isset($_POST['surrender'])){
+               $player->hasLost();
+               echo '<div class="alert alert-primary text-center">';
+               echo 'Dealer wins';
+               echo '</div>';
+           }
+           ?>
+     </div>
+     </div>
         <div class="playerAction text-center m-5">
             <form method="post" action="<?=htmlspecialchars($_SERVER["PHP_SELF"]);?>">
                 <input type="submit" value="Hit" name="hit" class="btn border-warning"></input>
