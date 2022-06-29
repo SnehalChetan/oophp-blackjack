@@ -37,12 +37,16 @@ class Blackjack{
 
         return $this->player;
     }
-
+/*
+* returns dealer
+*/
     public function getDealer() : Dealer{
 
         return $this->dealer;
     }
-
+/*
+* returns deck
+*/
     public function getDeck() : Deck{
 
         return $this->deck;
